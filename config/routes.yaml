@@ -1,0 +1,13 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+api_doc:
+ path: /doc
+ controller: api_platform.swagger_ui.action
+
+authentication_token:
+ path: /api/authentication_token
+ methods: ['POST']

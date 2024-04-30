@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{parent()}}
+	Ajout fichier
+{% endblock %}
+{% block body %}
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-10 col-md-8 text-primary">
+				<h1 class="text-center text-primary mt-4 pt-4 fw-bold">
+					Ajouter un fichier</h1>
+				{{ form_start(form) }}
+				{{ form_row(form.fichier) }}
+				{{ form_row(form.user) }}
+				<div class="table-responsive">
+					<table class="table">
+						{% set id = null %}
+						{% for scategorie in scategories %}
+							<tr>
+								{% if id != scategorie.categorie.id %}
+									{% set id =scategorie.categorie.id %}
+									<tr>
+										<td class="text-primary fwbold">{{scategorie.categorie.id}}) {{scategorie.categorie.libelle}}
+										</td>
+										<td></td>
+									</tr>
+								{% endif %}
+								<td class="text-primary">
+									{{scategorie.numero}}.
+									{{scategorie.libelle}}</td>
+								<td class="text-primary">
+									{{ form_widget(form.scategories[scategorie.id]) }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+				{{ form_row(form.ajouter) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Liste des sous-catégories
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-10 text-primary">
+                <h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">LISTE DES SOUS-CATÉGORIES</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Libellé</th>
+                            <th scope="col">Numéro</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for scategorie in scategories %}
+                            <tr>
+                                <td>{{ scategorie.libelle }}</td>
+                                <td>{{ scategorie.numero }}</td>
+                                <td>{{ scategorie.categorie.libelle }}</td>
+                                <td>
+                                    <a href="{{ path('app_modifier_scategorie', {'id': scategorie.id}) }}" class="btn btn-primary">Modifier</a>
+                                    <a href="{{ path('app_supprimer_scategorie', {'id': scategorie.id}) }}" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
